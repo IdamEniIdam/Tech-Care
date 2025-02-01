@@ -155,7 +155,7 @@ const MainDashboard = () => {
                   </div>
                 </span>
               </div>
-              <div className="w-full h-[1px] bg-[#707070] my-2" />
+              <div className="w-full h-[1px] bg-[#CBC8D4] my-2" />
               {/* Diastolic */}
               <div className="flex flex-col">
                 <span className="flex items-center">
