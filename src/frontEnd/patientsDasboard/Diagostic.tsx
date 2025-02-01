@@ -38,8 +38,8 @@ const Diagostic = () => {
       <div className="p-4 rounded-lg shadow-md overflow-x-auto h-[200px]">
         <table className="w-full border-collapse ">
           <thead>
-            <tr className="bg-[#F6F7F8]  text-left  rounded-[100px]">
-              <th className="p-2 text-[#072635] text-[14px]">
+            <tr className="bg-[#F6F7F8] text-left rounded-xl">
+              <th className="p-2 text-[#072635] text-[14px] ">
                 Problem/Diagnosis
               </th>
               <th className="p-2 text-[#072635] text-[14px]">Description</th>
