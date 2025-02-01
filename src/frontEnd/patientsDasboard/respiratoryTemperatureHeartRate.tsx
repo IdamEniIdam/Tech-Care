@@ -1,6 +1,8 @@
 import RespitoryIcon from "../../assets/respiratory rate.svg";
 import TemperaturIcon from "../../assets/temperature.svg";
 import HeartBmp from "../../assets/HeartBPM.svg";
+import ArrowDown from "../../assets/ArrowDown.svg";
+
 const RespiratoryTemperatureHeartRate = () => {
   return (
     <div className="bg-white grid md:grid-cols-3 gap-4 mt-6 flex-col p-4">
@@ -27,7 +29,10 @@ const RespiratoryTemperatureHeartRate = () => {
         <div>
           <p className="text-[#072635] text-[16px]">Heart Rate</p>
           <p className="text-[#072635] text-[30px] font-semibold">78 bpm</p>
-          <p className="text-[14px] text-[#072635]">Lower than Average</p>
+          <div className="flex flex-row justify-center items-center">
+            <img src={ArrowDown} alt="" />
+            <p className="text-[14px] text-[#072635] ml-2">Lower than Average</p>
+          </div>
         </div>
       </div>
     </div>
