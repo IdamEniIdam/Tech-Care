@@ -178,7 +178,6 @@ const MainDashboard = () => {
 
       {/* respiratory temperature heart rate */}
       <RespiratoryTemperatureHeartRate />
-
       {/* Diagostic */}
       <Diagostic />
     </div>
