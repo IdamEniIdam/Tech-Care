@@ -2,6 +2,11 @@ import { useState } from "react";
 import more from "../../assets/more_vert_FILL0_wght300_GRAD0_opsz24.svg";
 import search from "../../assets/search_FILL0_wght300_GRAD0_opsz24.svg";
 import Emily from "../../assets/Layer 8@2x.png";
+import Ryan from "../../assets/Layer 1@2x.png";
+import Brandon from "../../assets/Layer 3@2x.png";
+import Jessica from "../../assets/Layer 2@2x.png";
+import Samantha from "../../assets/Layer 6@2x.png";
+
 
 const patients = [
   {
@@ -16,28 +21,28 @@ const patients = [
     name: "Ryan Johnson",
     gender: "Male",
     age: 45,
-    image: Emily,
+    image: Ryan,
   },
   {
     id: 3,
     name: "Brandon Mitchell",
     gender: "Male",
     age: 36,
-    image: Emily,
+    image: Brandon,
   },
   {
     id: 4,
     name: "Jessica Taylor",
     gender: "Female",
     age: 28,
-    image: Emily,
+    image: Jessica,
   },
   {
     id: 5,
     name: "Samantha Johnson",
     gender: "Female",
     age: 56,
-    image: Emily,
+    image: Samantha,
   },
 ];
 
