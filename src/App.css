@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+  font-family: 'Lato', sans-serif;
+}
+@layer components {
+.input {
+  @apply w-full border-b border-primary-brand_color bg-white pe-[14px] py-[10px] text-sm text-gray900 outline-none placeholder:!text-gray900 focus:border-primary-darkGreen;
+}
+
+.card {
+  @apply rounded-[12px] border border-gray200 bg-white p-4;
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.06);
+  box-shadow: 0px 1px 3px 0px rgba(16, 24, 40, 0.1);
+}
+
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.custom-bg-color {
+  background-color: #04B287;
+}
+.coustom-text-color { 
+  color: #04B287;
+}  
+.custom-file-input::before {
+  content: 'Choose File';
+  display: inline;
+  color: #344054;
+  position: absolute;
+  background-color: #f2f4f7;
+  border: 1px solid #d0d5dd;
+  border-radius: 3px;
+  padding: 6px 6px;
+  outline: none;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 11px;
+  top: 21%;
+}
+
+/* .css-b62m3t-container,
+.css-1f43avz-a11yText-A11yText,
+.css-19kiuz2-control {
+  outline-color: none !important;
+} */
+
+.custom-file-input::focus {
+  background-color: red;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 8px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #00869e;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #00869e;
+}
+
+
+}
