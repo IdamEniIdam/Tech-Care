@@ -1,5 +1,10 @@
 import { Line } from "react-chartjs-2";
-import { FiThermometer, FiHeart, FiActivity } from "react-icons/fi";
+import ArrowUp from "../../assets/ArrowUp.svg";
+import ArrowDown from "../../assets/ArrowDown.svg";
+import RespiratoryTemperatureHeartRate from "./respiratoryTemperatureHeartRate";
+import Diagostic from "./Diagostic";
+import { FiTrendingUp, FiTrendingDown } from "react-icons/fi";
+import { ChartOptions } from "chart.js";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -37,7 +42,6 @@ const diagnosisData = {
       borderColor: "#d946ef",
       backgroundColor: "#d946ef",
       tension: 0.4,
-      
     },
     {
       label: "Diastolic",
@@ -49,89 +53,134 @@ const diagnosisData = {
   ],
 };
 
-const diagnosisList = [
-  {
-    problem: "Hypertension",
-    description: "Chronic high blood pressure",
-    status: "Under Observation",
+const systolicValue = diagnosisData.datasets[0].data.at(-1) ?? 0;
+const diastolicValue = diagnosisData.datasets[1].data.at(-1) ?? 0;
+
+// Determine Systolic Status
+const systolicStatus =
+  systolicValue > 140
+    ? { text: "Higher than Average", color: "text-red-500", Icon: FiTrendingUp }
+    : { text: "Normal", color: "text-green-500", Icon: null };
+
+// Determine Diastolic Status
+const diastolicStatus =
+  diastolicValue < 80
+    ? {
+        text: "Lower than Average",
+        color: "text-blue-500",
+        Icon: FiTrendingDown,
+      }
+    : { text: "Normal", color: "text-green-500", Icon: null };
+
+const options: ChartOptions<"line"> = {
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: {
+    legend: {
+      position: "top" as const,
+      labels: {
+        color: "#072635",
+        font: {
+          size: 14,
+        },
+      },
+      display: false,
+    },
+    tooltip: {
+      mode: "index",
+      intersect: false,
+    },
   },
-  {
-    problem: "Type 2 Diabetes",
-    description: "Insulin resistance and elevated blood sugar",
-    status: "Cured",
+  scales: {
+    x: {
+      ticks: {
+        color: "#6b7280",
+      },
+    },
+    y: {
+      ticks: {
+        color: "#6b7280",
+      },
+      grid: {
+        color: "#e5e7eb",
+      },
+    },
   },
-  {
-    problem: "Asthma",
-    description: "Recurrent episodes of bronchial constriction",
-    status: "Inactive",
-  },
-];
+};
 
 const MainDashboard = () => {
   return (
-    <div className="p-6 bg-gray-50 m-5">
-      <h2 className="text-2xl font-semibold mb-4">Diagnosis History</h2>
-      <div className="bg-white p-6 rounded-lg shadow-md h-[450px]">
-        <div className="flex justify-between items-center mb-4">
-          <h3 className="text-lg font-medium">Blood Pressure</h3>
-          <select className="border p-2 rounded-md text-sm text-gray-600">
-            <option>Last 6 months</option>
-          </select>
-        </div>
-       
-          <Line data={diagnosisData} />
-      </div>
+    <div className="bg-[#F6F7F8] p-6 m-5 bg-gray-50">
+      <div className="bg-white">
+        <h2 className="text-[24px] text-[#072635] font-semibold mb-4">
+          Diagnosis History
+        </h2>
+        <div className="p-6 rounded-lg shadow-md bg-[#F4F0FE]">
+          <div className="flex flex-wrap justify-between mb-4">
+            <h3 className="text-lg font-medium text-start">Blood Pressure</h3>
+            <div className="flex justify-end">
+              <select
+                className="p-2 rounded-md text-sm text-gray-600 bg-[#F4F0FE]"
+                aria-label="Select Time Range"
+              >
+                <option className="bg-[#F4F0FE] border-0">Last 6 months</option>
+                <option className="bg-[#F4F0FE] border-0">
+                  Last 12 months
+                </option>
+              </select>
+            </div>
+          </div>
 
-      <div className="grid md:grid-cols-3 gap-4 mt-6 flex-col">
-        <div>
-          <div className="bg-blue-100 p-4 rounded-lg flex items-start gap-4 flex-col">
-            <FiActivity className="text-4xl text-blue-500" />
-            <div>
-              <p className="text-gray-600">Respiratory Rate</p>
-              <p className="text-xl font-semibold">20 bpm</p>
-              <p className="text-sm text-gray-500">Normal</p>
+          {/* Row Container */}
+          <div className="flex flex-col lg:flex-row justify-between items-start">
+            {/* Chart */}
+            <div className="w-full lg:w-2/3 h-auto mb-4">
+              <Line data={diagnosisData} options={options} />
+            </div>
+
+            {/* Key Metrics (Systolic & Diastolic) */}
+            <div className="w-full lg:w-1/3 p-3 flex flex-col justify-start">
+              {/* Systolic */}
+              <div className="flex flex-col mb-4">
+                <span className="flex items-center">
+                  <div className="bg-[#E66FD2] w-[10px] h-[10px] rounded-[50px]"></div>
+                  <div className="ml-1">Systolic</div>
+                </span>
+                <strong className="text-[22px]">{systolicValue}</strong>
+
+                <span className={`flex items-center ${systolicStatus.color}`}>
+                  <img src={ArrowUp} alt="" />
+                  <div className="ml-2 text-[#072635] text-[10px]">
+                    {systolicStatus.text}
+                  </div>
+                </span>
+              </div>
+              <div className="w-full h-[1px] bg-[#707070] my-2" />
+              {/* Diastolic */}
+              <div className="flex flex-col">
+                <span className="flex items-center">
+                  <div className="bg-[#8C6FE6] w-[10px] h-[10px] rounded-[50px]"></div>
+                  <div className="ml-1">Diastolic</div>
+                </span>
+                <strong className="text-[22px]">{diastolicValue}</strong>
+
+                <span className={`flex items-center ${diastolicStatus.color}`}>
+                  <img src={ArrowDown} alt="" />
+                  <div className="ml-2 text-[#072635] text-[10px]">
+                    {diastolicStatus.text}
+                  </div>
+                </span>
+              </div>
             </div>
           </div>
         </div>
-        <div className="bg-red-100 p-4 rounded-lg flex items-start flex-col gap-4">
-          <FiThermometer className="text-4xl text-red-500" />
-          <div>
-            <p className="text-gray-600">Temperature</p>
-            <p className="text-xl font-semibold">98.6°F</p>
-            <p className="text-sm text-gray-500">Normal</p>
-          </div>
-        </div>
-        <div className="bg-pink-100 p-4 rounded-lg flex items-start flex-col gap-4">
-          <FiHeart className="text-4xl text-pink-500" />
-          <div>
-            <p className="text-gray-600">Heart Rate</p>
-            <p className="text-xl font-semibold">78 bpm</p>
-            <p className="text-sm text-gray-500">Lower than Average</p>
-          </div>
-        </div>
       </div>
 
-      <h2 className="text-2xl font-semibold mt-8 mb-4">Diagnostic List</h2>
-      <div className="bg-white p-4 rounded-lg shadow-md overflow-x-auto">
-        <table className="w-full border-collapse">
-          <thead>
-            <tr className="bg-gray-100 text-left">
-              <th className="p-2">Problem/Diagnosis</th>
-              <th className="p-2">Description</th>
-              <th className="p-2">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {diagnosisList.map((item, index) => (
-              <tr key={index} className="border-b hover:bg-gray-50">
-                <td className="p-2 font-medium">{item.problem}</td>
-                <td className="p-2">{item.description}</td>
-                <td className="p-2 text-gray-700">{item.status}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      {/* respiratory temperature heart rate */}
+      <RespiratoryTemperatureHeartRate />
+
+      {/* Diagostic */}
+      <Diagostic />
     </div>
   );
 };

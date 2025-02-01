@@ -1,5 +1,5 @@
 import { Card } from "../../components/ui/card";
-
+import downloadIcon from "../../assets/download_FILL0_wght300_GRAD0_opsz24 (1).svg";
 const LabResults = () => {
   return (
     <Card className="h-64 overflow-auto">
@@ -16,10 +16,12 @@ const LabResults = () => {
             key={index}
             className="flex items-center justify-between p-2 rounded-md hover:bg-gray-100"
           >
-            <span>{test}</span>
-            <button className="p-1 text-gray-500 hover:text-gray-700">
-              📥
-            </button>
+            <span className="text-[#072635] text-[13px]">{test}</span>
+              <img
+                src={downloadIcon}
+                alt=""
+                className="p-1 text-gray-500 hover:text-gray-700"
+              />
           </li>
         ))}
       </ul>
