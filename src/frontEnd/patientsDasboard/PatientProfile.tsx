@@ -34,10 +34,9 @@ const PatientProfile = () => {
   return (
     <div className="w-full max-w-sm bg-white shadow-lg p-4 flex flex-col overflow-hidden ">
       {patients.map((patient) => (
-        <div   key={patient.id} className="flex flex-col items-center">
+        <div key={patient.id} className="flex flex-col items-center">
           <CardContent>
             <div
-            
               className={`flex items-center p-2 rounded-md cursor-pointer ${
                 selectedPatient.id === patient.id
                   ? "bg-white"
@@ -48,7 +47,7 @@ const PatientProfile = () => {
               <div>
                 <div className="flex flex-col items-center">
                   <img
-                    className="w-[150px] h-[150px] lg:[200px] lg:w-[200px] sm:w-[200px] sm:h-[200px]" // Adjusted for responsiveness
+                    className="w-[150px] h-[100px] w-[100px] lg:[200px] lg:w-[200px] sm:w-[200px] sm:h-[200px] md:w-[200px] md:h-[200px]" // Adjusted for responsiveness
                     src={patient.photo}
                     alt=""
                   />

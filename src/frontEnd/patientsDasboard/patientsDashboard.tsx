@@ -8,7 +8,7 @@ export default function PatientsDashboard() {
   return (
     <div className="bg-[#F6F7F8] flex flex-col md:flex-row justify-between w-full">
       {/* Left Sidebar */}
-      <div className="bg-[#F6F7F8] m-4 w-full md:w-1/4 flex justify-center">
+      <div className="bg-[#F6F7F8] m-4 w-full md:w-1/4 flex justify-center ">
         <Sidebar />
       </div>
 
