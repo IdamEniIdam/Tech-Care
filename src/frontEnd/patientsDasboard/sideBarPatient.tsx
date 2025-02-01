@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { FiSearch, } from "react-icons/fi";
 import more from "../../assets/more_vert_FILL0_wght300_GRAD0_opsz24.svg";
 import search from "../../assets/search_FILL0_wght300_GRAD0_opsz24.svg";
+import Emily from "../../assets/Layer 8@2x.png";
 
 const patients = [
   {
@@ -9,35 +9,35 @@ const patients = [
     name: "Emily Williams",
     gender: "Female",
     age: 18,
-    image: "https://i.pravatar.cc/50?img=1",
+    image: Emily,
   },
   {
     id: 2,
     name: "Ryan Johnson",
     gender: "Male",
     age: 45,
-    image: "https://i.pravatar.cc/50?img=2",
+    image: Emily,
   },
   {
     id: 3,
     name: "Brandon Mitchell",
     gender: "Male",
     age: 36,
-    image: "https://i.pravatar.cc/50?img=3",
+    image: Emily,
   },
   {
     id: 4,
     name: "Jessica Taylor",
     gender: "Female",
     age: 28,
-    image: "https://i.pravatar.cc/50?img=4",
+    image: Emily,
   },
   {
     id: 5,
     name: "Samantha Johnson",
     gender: "Female",
     age: 56,
-    image: "https://i.pravatar.cc/50?img=5",
+    image: Emily,
   },
 ];
 
